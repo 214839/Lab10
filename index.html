@@ -1,0 +1,64 @@
+<html>
+<head>
+<title> Lab 10 </title>
+<script src="Scripts/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+PImage cone;
+
+int imgx;
+int imgy;
+
+int vx;
+int vy;
+
+int mouseRelative;
+
+void setup(){
+
+size(500,500);
+frameRate( 30 );
+
+textSize(40);
+fill(0,0,0);
+
+cone = loadImage("Images/cone.png");
+
+imgx = 100;
+imgy = 100;
+
+vx = 70;
+vy = 70;
+
+}
+
+
+void draw()
+{
+	background(0,0,0);
+	image(cone,imgx,imgy,vx,vy);
+	
+	textSize(15);
+	fill(255,255,255);
+	text(mouseX,10,20);
+	text(mouseY,50,20);
+	
+	if(mouseX > imgx && mouseX < imgx + vx && mouseY > imgy && mouseY < imgy + vy)
+	{
+		if(mousePressed == true && mouseButton == LEFT)
+		{
+			imgx = mouseX;
+			imgy = mouseY;
+		}
+	}		
+}
+
+</script>
+<canvas id="mycanvas"></canvas>
+</head>
+
+<body>
+
+</body>
+</html>
+
