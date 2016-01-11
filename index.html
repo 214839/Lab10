@@ -12,7 +12,10 @@ int imgy;
 int vx;
 int vy;
 
-int mouseRelative;
+boolean inImage;
+
+int mDx; 
+int mDy; 
 
 void setup(){
 
@@ -29,6 +32,7 @@ imgy = 100;
 
 vx = 70;
 vy = 70;
+ 
 
 }
 
@@ -38,19 +42,28 @@ void draw()
 	background(0,0,0);
 	image(cone,imgx,imgy,vx,vy);
 	
-	textSize(15);
-	fill(255,255,255);
-	text(mouseX,10,20);
-	text(mouseY,50,20);
-	
 	if(mouseX > imgx && mouseX < imgx + vx && mouseY > imgy && mouseY < imgy + vy)
 	{
-		if(mousePressed == true && mouseButton == LEFT)
-		{
-			imgx = mouseX;
-			imgy = mouseY;
-		}
-	}		
+		inImage = true;
+	}	
+		
+	if(mousePressed == true && mouseButton == LEFT && inImage == true) 
+	{
+		mDx = mouseX - imgx;
+		mDy = mouseY - imgy;
+		
+	}else{
+		inImage = false;
+	}	
+}
+
+void mouseDragged()
+{
+	if(inImage == true)
+	{
+		imgx = mouseX - mDx;
+		imgy = mouseY - mDy;
+	}
 }
 
 </script>
